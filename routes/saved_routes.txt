@@ -1,0 +1,50 @@
+Route::get('/about', ['as' => 'about.index', function () {
+    return view("about.index");
+}]);
+Route::post('/posts', ['as' => 'posts.store', function () {
+    return view("posts.create");
+}]);
+Route::get('/posts{page?}', ['as' => 'posts.index', function () {
+    return view("posts.post");
+}]);
+Route::get('/hot{page?}', ['as' => 'posts.hot', function () {
+    return view("posts.post");
+}]);
+Route::get('/random', ['as' => 'posts.random', function () {
+    return view("posts.show");
+}]);
+Route::get('/posts/{id}', ['as' => 'posts.show', function () {
+    return view("posts.show");
+}]);
+Route::get('/posts/create', ['as' => 'posts.create', function () {
+    return view("posts.create");
+}]);
+
+Route::get('/posts/{id}/edit', ['as' => 'posts.edit', function () {
+    return view("posts.edit");
+}]);
+Route::patch('/posts/{id}', ['as' => 'posts.update', function () {
+    return view("posts.edit");
+}]);
+Route::delete('/posts/{id}', ['as' => 'posts.destroy', function () {
+    return view("posts.edit");
+}]);
+Route::post('/posts/{id}/comment', ['as' => 'posts.comment', function () {
+    return view("posts.edit");
+}]);
+Route::get('/contact', ['as' => 'contact.index', function () {
+    return view("contact.index");
+}]);
+Route::get('/combine', ['as' => 'combine.index', function () {
+	$data = ["firstname" => "Joseph", "lastname" => "Ho"];
+    return view("combine", $data);
+}]);
+Route::get('/{page?}', ['as' => 'home.index', function () {
+    return view("posts.index");
+}]);
+
+//auth/register use
+Route::get('auth/register',['as' => 'register.index', 'uses' => 'Auth\RegisterController@getRegister']);
+Route::post('auth/register',['as' => 'register.process', 'uses' => 'Auth\RegisterController@postRegister']);
+Route::get('register/validate/{data}',['as' => 'register.validate', 'uses' => 'Auth\RegisterController@validator']);
+//Route::get('register/create',['as' => 'register.create', 'uses' => 'Auth\RegisterController@create']);
